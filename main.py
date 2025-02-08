@@ -14,3 +14,7 @@ app.include_router(document_routes.router, prefix="/api/v1")
 def read_root():
     return {"message": "Hello, World!"}
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
