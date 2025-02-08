@@ -9,12 +9,11 @@ PII_PATTERNS = {
     "address": r"\d{1,5}\s\w+(\s\w+)*,\s\w+,\s\w{2}\s\d{5}",  # Matches US addresses
 }
 
-def scan_for_pii(text: str) -> dict:
-    detected_pii = {}
+def scan_for_pii(text: str) -> list:
+    detected_pii = []
     
     for pii_type, pattern in PII_PATTERNS.items():
         matches = re.findall(pattern, text)
-        if matches:
-            detected_pii[pii_type] = matches
+        detected_pii.extend(matches)  # Add matches to the list
             
     return detected_pii 
